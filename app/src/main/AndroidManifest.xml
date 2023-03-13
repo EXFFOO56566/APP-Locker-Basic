@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tochy.applocker.protect.data">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REAL_GET_TASKS" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
+
+    <application
+        android:name="com.tochy.applocker.protect.data.AppLockApplication"
+        android:allowBackup="true"
+        android:allowClearUserData="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:manageSpaceActivity="com.tochy.applocker.protect.data.ManageSpaceActivity"
+        android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <service
+            android:name="com.tochy.applocker.protect.data.services.AppCheckServices"
+            android:exported="false" />
+
+        <receiver android:name="com.tochy.applocker.protect.data.services.NewAppInstalledReceiver">
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+
+        <receiver android:name="com.tochy.applocker.protect.data.services.HideAppIconReceiver">
+           <intent-filter>
+               <action android:name="android.intent.action.NEW_OUTGOING_CALL"></action>
+           </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.tochy.applocker.protect.data.services.UnInstallReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.QUERY_PACKAGE_RESTART"/>
+                <data android:scheme="package"  />
+            </intent-filter>>
+        </receiver>
+
+        <receiver
+            android:name="com.tochy.applocker.protect.data.services.BootComplete"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_RESTARTED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.tochy.applocker.protect.data.services.ConnectivityReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.tochy.applocker.protect.data.services.AlarmReceiver"></receiver>
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.SplashActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.MainActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.PasswordActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+               <action android:name="android.intent.action.UNINSTALL_PACKAGE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.PasswordSetActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.PasswordRecoverSetActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.PasswordRecoveryActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.ManageSpaceActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name="com.tochy.applocker.protect.data.LoadingActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
+
+
+
+    </application>
+
+</manifest>

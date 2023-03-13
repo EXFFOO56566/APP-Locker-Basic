@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tochy App Locker</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_password">Password Change</string>
+    <string name="draw_pattern">Draw Pattern to Unlock</string>
+    <string name="draw_pattern_to_change_password">Enter your Recent Pattern</string>
+    <string name="rate_us">Rate us</string>
+    <string name="banner_home_footer">ca-app-pub-8930377341158772/2610540918</string>
+    <string name="interstitial_full_screen">ca-app-pub-8930377341158772/8040985080</string>
+    <string name="select_your_security_question_and_give_the_correct_answer_to_recover">Select your security question and give the correct answer to recover your password</string>
+</resources>
